@@ -1,0 +1,15 @@
+#!/bin/sh
+
+BLENDER_28_TAR="blender-2.80-linux-glibc217-x86_64.tar.bz2"
+BLENDER_28_URL="https://mirror.clarkson.edu/blender/release/Blender2.80/$BLENDER_28_TAR"
+BLENDER_28_DIR="blender-2.80"
+
+echo "-----> Installing Blender 2.8"
+
+if [ ! -f "$2/$BLENDER_28_TAR" ]; then
+	printf "       Downloading from %s\n" $BLENDER_28_URL
+	wget -q "$BLENDER_28_URL" -O "/tmp/$BLENDER_28_TAR"
+fi
+
+echo "       Unpacking .tar"
+mkdir -p "$1/$BLENDER_28_DIR" && tar xf "/tmp/$BLENDER_28_TAR" -C "$1/$BLENDER_28_DIR" --strip-components 1
